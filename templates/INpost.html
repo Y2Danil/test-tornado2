@@ -1,0 +1,33 @@
+{% extends "main.html" %}
+<!---->
+{% block content %}
+<div>
+    <div>
+        <h1 class='post_title display-2'>{{ post_info[0] }}</h1>
+    </div>
+    <div>
+        <p class='post_text'>{{ post_info[1] }}</p>
+    </div>
+    <div>
+        <form class="form-inline" method="post" action="/open_post{{ post_info[2] }}/post">
+            <input type="text" placeholder="Текст коммента" id='comment_text' name='comment_text'>
+            <button class='btn'>Отправить</button>
+        </form>
+        {% if comments %} {% for comment in comments %}
+        <strong>{{ comment[0] }}</strong>
+        <p>{{ comment[1] }}</p>
+        {% end %} {% else %}
+        <strong class='display-3'>Комментов нет:(</strong> {% end %}
+    </div>
+</div>
+
+<style>
+    .post_title {
+        font-weight: 700;
+    }
+    
+    .post_text {
+        font-size: 24px;
+    }
+</style>
+{% end %}

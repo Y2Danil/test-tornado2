@@ -1,0 +1,29 @@
+{% extends "main.html" %}
+<!-- -->
+{% block content %} {% for post in Posts %}
+<div class="Post col-10 col-mg-10 col-lg-5">
+    <a href="/open_post{{ post[2] }}">
+        <h2>{{ post[0] }}</h2>
+    </a>
+
+    <p>{{ post[1] }}</p>
+</div>
+{% end %}
+
+<style>
+    .Post {
+        background-color: #ddd;
+        margin: auto;
+    }
+    
+    .Post h2 {
+        font-weight: 600;
+        font-size: 3em;
+    }
+    
+    .Post p {
+        font-size: 2em;
+    }
+</style>
+{% end %}
+<!-- -->

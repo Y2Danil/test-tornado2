@@ -1,0 +1,131 @@
+{% extends "main.html" %}
+<!---->
+{% block a %}<a href='/adminka'>Админка > </a><a href='/adminka/regpostlist'>Посты > </a><a href='/adminka/regpost{{post_id}}' class='active'>{{ post_info[0] }}</a>{% end %}
+<!---->
+{% block content %}
+<!---->{% if current_user %}
+<!------>{% if [(1,)] == SQLiter().check_user_only_name(escape(current_user)) %}
+<!---->
+
+<h1 class='name_reg'>Изменить пост:</h1>
+<div class="regpost">
+    <form method="post" action="/adminka/regpost{{post_id}}/post" class='form_reg_post'>
+        <strong class='col-3 title-statia'><span>Название:   </span></strong><input type="text" name='title_post' id='title_reg_post' class='col-sm-10 col-12' value='{{ post_info[0] }}'><br><br>
+        <strong class='col-3 text-stati'>Текст поста: </strong><textarea name="text_post" id="text_reg_post" rows='7' class='col-sm-10 col-12'>{{post_info[1]}}</textarea>
+        <div class='buttons'>
+            <button type="submit" class='col-6 button_reg'>Сохранить</button> {% module xsrf_form_html() %}
+            <form method="post" action="" class='col-5'>
+                <button type="submit" class='col-2 button_delete'>Удалить</button> {% module xsrf_form_html() %}
+            </form>
+        </div>
+    </form>
+</div>
+<!------>{% end %}
+<!---->{% end %}
+<style>
+    .regpost {
+        width: 90%;
+        margin: auto;
+        background: #f0f0f0;
+        padding: 10px;
+        border: 1px solid #aaa;
+        border-radius: 5px;
+    }
+    
+    .name_reg {
+        font-size: 26px;
+        font-weight: 600;
+        margin-left: 5%;
+    }
+    
+    .name_reg_post {
+        font-size: 30px;
+        font-weight: 700;
+    }
+    
+    .title-statia {
+        margin-right: 20px;
+        font-size: 14px;
+    }
+    
+    .text-stati {
+        font-size: 14px;
+        margin-right: 4px;
+    }
+    
+    .button_reg {
+        color: #fdfdfd;
+        background: linear-gradient(to bottom, rgb(130, 195, 255), rgb(78, 161, 255), rgb(48, 155, 255));
+        border: 1px solid rgb(211, 211, 211);
+        border-radius: 4px;
+    }
+    
+    .button_delete {
+        color: #fdfdfd;
+        background: linear-gradient(to bottom, rgb(255, 138, 138), rgb(248, 82, 82), rgb(255, 48, 48));
+        border: 1px solid rgb(211, 211, 211);
+        border-radius: 4px;
+        position: absolute;
+        right: 6%;
+    }
+    
+    form input {
+        color: #333;
+        border-radius: 4px;
+        border: 1px solid #999;
+        outline: none;
+        background: #fcfcfc;
+        box-shadow: inset 0 0 1px 1px #ccc;
+        font-family: 'Roboto Condensed', sans-serif;
+        font-weight: 600;
+        font-size: 16px;
+        padding-left: 3px;
+    }
+    
+    form textarea {
+        color: #333;
+        border-radius: 4px;
+        border: 1px solid #999;
+        outline: none;
+        background: #fcfcfc;
+        box-shadow: inset 0 0 1px 1px #ccc;
+        font-family: 'Roboto Condensed', sans-serif;
+        font-weight: 600;
+        font-size: 16px;
+        padding-left: 3px;
+    }
+    
+    form input:focus {
+        background: rgb(255, 255, 255);
+        box-shadow: 0 0 2px 1px #777;
+    }
+    
+    form textarea:focus {
+        background: rgb(255, 255, 255);
+        box-shadow: 0 0 2px 1px #777;
+    }
+    
+    form button {
+        transition: .5s;
+        font-weight: 500;
+    }
+    
+    form button:hover {
+        color: #000;
+        border: 1px solid #666;
+        background: #fff;
+        box-shadow: inset 0 0 2px 1px #444;
+    }
+    
+    .buttons {
+        margin-top: 10px;
+    }
+    
+    @media (min-width: 742px) {
+        .text-stati {
+            position: relative;
+            bottom: 155px;
+        }
+    }
+</style>
+{% end %}

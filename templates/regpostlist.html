@@ -1,0 +1,111 @@
+{% extends "main.html" %}
+<!---->
+{% block a %}<a href='/adminka'>Админка > </a><a href='/adminka/regpostlist' class='active'>Посты</a>{% end %}
+<!---->
+{% block content %}
+<!---->{% if current_user %}
+<!------>{% if [(1,)] == SQLiter().check_user_only_name(escape(current_user)) %}
+<!---->
+<div>
+    <strong class='posts'>Посты:</strong>
+    <a href="/adminka/add_post" class='add_post'>
+        <svg width="1.8em" height="1.8em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+        </svg>
+        <span>Добавить Пост</span>
+    </a>
+</div>
+<div class='dly_bland_mod'>
+    <table class="table table-striped table_list_post">
+        <thead>
+            <tr>
+                <th>Посты</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for post in Posts %}
+            <tr>
+                <td>
+                    <a href='regpost{{post[2]}}'>
+                        <strong>{{ post[0] }}</strong>
+                    </a>
+                </td>
+            </tr> {% end %}
+        </tbody>
+    </table>
+</div>
+
+<!-- <div class=" add_post ">
+    <form method="post " action="/adminka/add_post/post ">
+        <input type="text " name='title_post' id='title_post' class='col-mg-12 col-6'>
+        <textarea name="text_post " id="text_post " cols="15 " rows="10 " class='col-mg-12 col-6'></textarea>
+        <button type="submit " class='col-6 col-mg-12'>Отправить</button> {% module xsrf_form_html() %}
+    </form>
+</div> -->
+<!------>{% end %}
+<!---->{% end %}
+<style>
+    .posts {
+        margin-left: 5%;
+        font-size: 32px;
+        font-weight: 600;
+    }
+    
+    .add_post {
+        position: relative;
+        top: 4px;
+        font-size: 16px;
+        float: right;
+        margin-right: 5%;
+        background: linear-gradient(to bottom, rgb(75, 77, 80), rgb(52, 54, 56));
+        color: #fdfdfd;
+        border-radius: 25px;
+        padding: 3px 10px;
+        padding-left: 5px;
+        border: 1px solid rgb(52, 54, 56);
+    }
+    
+    .add_post svg {
+        position: relative;
+    }
+    
+    .add_post span {
+        position: relative;
+        right: 3px;
+    }
+    
+    .add_post:hover {
+        color: #000;
+        background: #fff;
+        box-shadow: inset 0 0 2px 1px #000;
+    }
+    
+    .table_list_post {
+        width: 90%;
+        margin: auto;
+        border: 1px solid #d9d9d9;
+    }
+    
+    .table-striped td {
+        padding: 7px;
+    }
+    
+    thead th {
+        max-height: 10px !important;
+        font-size: 14px;
+        padding: 2px 5px !important;
+        background-color: #ddd !important;
+        color: #888 !important;
+        font-weight: 200;
+    }
+    
+    a {
+        text-decoration: none;
+        color: rgb(24, 190, 255);
+        font-size: 14px;
+    }
+    
+    a:hover {
+        color: rgb(52, 54, 56);
+    }
+</style>{% end %}
