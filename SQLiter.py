@@ -2,7 +2,7 @@ import sqlite3
 
 class SQLiter:
   def __init__(self):
-    self.con = sqlite3.connect('test-tornado/db.sqlite')
+    self.con = sqlite3.connect('db.sqlite')
     self.cur = self.con.cursor()
     
   def post_po_id(self, post_id):
